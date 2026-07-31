@@ -1,4 +1,4 @@
-<button class="btn-agregar-carrito" data-id="${producto.id}">
+<button class="boton-agregar-carrito" data-id="${producto.id}">
                 gregar al carrito
         </button>
 /** SECCIÓN CARRITO AGREGAR/ELIMINAR/VISUALIZAR---PERSISTENCIA EN LOCALSTORAGE */
@@ -30,8 +30,10 @@ function renderizarCarrito() {
     const htmlCarrito = carrito.map(producto => {
         return `
             <div class="producto-carrito">
-                <h3>${producto.nombre}</h3>
-                <span>${producto.precio}</span>
+                <div class="info-producto">
+                    <h3>${producto.nombre}</h3>
+                    <span>${producto.precio}</span>
+                </div>
                 <button class="btn-eliminar" data-id="${producto.id}">
                     Eliminar
                 </button>
