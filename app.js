@@ -148,6 +148,8 @@ const productosFritosColombianos = [
 const contenedorProductos = document.getElementById("productos")
 let carrito = [];
 
+
+
 function renderizarProductos(array) {
   const htmlTarjetas = array.map(producto => {
     return `
@@ -169,6 +171,7 @@ function renderizarProductos(array) {
   }).join('');
 
   contenedorProductos.innerHTML = htmlTarjetas;
+  
 }
 
 renderizarProductos(productosFritosColombianos)
@@ -243,6 +246,7 @@ function cargarCarrito() {
     }
 
     renderizarCarrito();
+    
 }
 cargarCarrito();
 
@@ -265,3 +269,6 @@ const counterProducts = () => {
   const counterProductos = document.getElementById("counterProductos");
   counterProductos.textContent = carrito.length;
 }
+
+cargarCarrito();
+counterProducts();
