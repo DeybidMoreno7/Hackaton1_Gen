@@ -169,8 +169,9 @@ function renderizarProductos(array) {
           </div>
           <p class="region"><strong>Origen:</strong> ${producto.region}</p>
           <p class="descripcion">${producto.descripcion}</p>
+          <button class= "boton-agregar-carrito"> <span>Icono </span> Agregar al Carrito </button>
         </div>
-      </div>
+      </div>  
     `;
   }).join('');
 
