@@ -209,7 +209,7 @@ function renderizarCarrito() {
                     <span>${producto.precio}</span>
                 </div>
                 <button class="btn-eliminar" data-id="${producto.id}">
-                    Eliminar
+                    <i class="icon ion-md-close"></i>
                 </button>
             </div>
         `;
