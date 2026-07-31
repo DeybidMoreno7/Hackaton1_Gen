@@ -1,4 +1,44 @@
 
+
+
+.nuestra-cocina{
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+    padding:4rem 2rem;
+}
+.galeria{
+    display:flex;
+    gap:2rem;
+}
+.imagenes-santi{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: clamp(8rem, 18vw, 14rem);/*clamp(mínimo, tamaño ideal, máximo)*/
+}
+.imagenes-santi img{
+    width: 100%;
+    height: auto;
+    border-radius: .5rem; 
+}
+.texto-santi{
+    font-size: 15px;
+    width: 55%;
+}
+.texto-santi h4,
+.texto-santi h5{
+    text-align:center;
+}
+.texto-santi h4{
+    margin-bottom:1.5rem;
+}
+.texto-santi h5{
+    margin-top:2rem;
+    margin-bottom:.8rem;
+}
+.texto-santi p{
+    text-align: justify;
 .btn-search {
     right: 0;
 }
