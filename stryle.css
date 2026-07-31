@@ -1,0 +1,13 @@
+
+.btn-search {
+    right: 0;
+}
+.logo-navbar{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.navbar-brand{
+    font-size: 0rem;
+}
