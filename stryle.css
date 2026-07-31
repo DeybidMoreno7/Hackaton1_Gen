@@ -79,9 +79,15 @@ body {
 }
 
 .btn-hero-glass:hover {
+<<<<<<< HEAD
     background: rgba(255, 255, 255, 0.25);
     color: var(--text-light);
 
+=======
+  background: rgba(255, 255, 255, 0.25);
+  color: var(--text-light);
+  
+>>>>>>> cbbc8c4d7599946cfea1c8beb91021ca968a170f
 }
 
 
@@ -253,3 +259,5 @@ body {
 .boton-agregar-carrito:hover {
     background-color: #923000;
 }
+
+
