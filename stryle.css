@@ -517,6 +517,10 @@ body {
     font-size: 0.9rem;
 }
 
+.iconCustom {
+    color: var(--primary-color);
+}
+
 @media (max-width:768px){
     .nuestra-cocina{
         flex-direction:column;
