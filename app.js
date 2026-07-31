@@ -181,8 +181,7 @@ function renderizarProductos(array) {
 }
 
 renderizarProductos(productosFritosColombianos)
-
-// ==============================================================
+/** SECCIÓN CARRITO AGREGAR/ELIMINAR/VISUALIZAR---PERSISTENCIA EN LOCALSTORAGE */
 let carrito = [];
 contenedorProductos.addEventListener("click", function (evento) {
     console.log(evento.target);
@@ -191,7 +190,7 @@ contenedorProductos.addEventListener("click", function (evento) {
         agregarProducto(idProducto);
     }
 })
-
+/*agregar al carrito*/
 function agregarProducto(idProducto) {
     console.log(idProducto);
     const productoEncontrado = productosFritosColombianos.find(
@@ -202,7 +201,7 @@ function agregarProducto(idProducto) {
     renderizarCarrito();
     guardarCarrito();
 }
-
+/*Visualizar el carrito*/
 const contenedorCarrito = document.getElementById("carrito");
 function renderizarCarrito() {
     if (carrito.length === 0) {
@@ -222,6 +221,7 @@ function renderizarCarrito() {
     }).join("");
     contenedorCarrito.innerHTML = htmlCarrito;
 }
+/*Eliminar del carrito*/
 contenedorCarrito.addEventListener("click", function (evento) {
     if (evento.target.classList.contains("btn-eliminar")) {
         const idProducto = evento.target.dataset.id;
@@ -232,7 +232,7 @@ contenedorCarrito.addEventListener("click", function (evento) {
         guardarCarrito();
     }
 });
-
+/**Persistencia Localstorage */
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
