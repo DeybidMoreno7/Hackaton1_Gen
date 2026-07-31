@@ -74,6 +74,7 @@ body {
 .btn-hero-glass:hover {
   background: rgba(255, 255, 255, 0.25);
   color: var(--text-light);
+}
 
 
 
@@ -115,8 +116,10 @@ body {
 }
 .texto-santi p{
     text-align: justify;
+}
 .btn-search {
     right: 0;
+    
 }
 .logo-navbar{
     width: 200px;
