@@ -146,6 +146,9 @@ const productosFritosColombianos = [
 ];
 
 const contenedorProductos = document.getElementById("productos")
+let carrito = [];
+
+
 
 function renderizarProductos(array) {
   const htmlTarjetas = array.map(producto => {
@@ -161,15 +164,111 @@ function renderizarProductos(array) {
           </div>
           <p class="region"><strong>Origen:</strong> ${producto.region}</p>
           <p class="descripcion">${producto.descripcion}</p>
-          <button class= "boton-agregar-carrito"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito </button>
+          <button class= "boton-agregar-carrito" data-id="${producto.id}"><i class="fa-solid fa-cart-shopping"> </i> Agregar al Carrito </button>
         </div>
       </div>  
     `;
   }).join('');
 
   contenedorProductos.innerHTML = htmlTarjetas;
+  
 }
 
 renderizarProductos(productosFritosColombianos)
 
+contenedorProductos.addEventListener("click", function (evento) {
+    const boton = evento.target.closest(".boton-agregar-carrito");
 
+    if (!boton) return;
+    const idProducto = boton.dataset.id;
+    agregarProducto(idProducto);
+})
+/*agregar al carrito*/
+function agregarProducto(idProducto) {
+    const productoEncontrado = productosFritosColombianos.find(
+        producto => producto.id === Number(idProducto)
+    );
+    if(!productoEncontrado) return;
+    carrito.push(productoEncontrado);
+    renderizarCarrito();
+    guardarCarrito();
+    counterProducts()
+}
+/*Visualizar el carrito*/
+const contenedorCarrito = document.getElementById("carrito");
+function renderizarCarrito() {
+    if (carrito.length === 0) {
+        contenedorCarrito.innerHTML = "<p>Tu carrito está vacío 🛒</p>";
+        return;
+    }
+    const htmlCarrito = carrito.map(producto => {
+        return `
+            <div class="producto-carrito">
+                <div class="info-producto">
+                    <h3>${producto.nombre}</h3>
+                    <span>${producto.precio}</span>
+                </div>
+                <button class="btn-eliminar" data-id="${producto.id}">
+                    Eliminar
+                </button>
+            </div>
+        `;
+    }).join("");
+    contenedorCarrito.innerHTML = htmlCarrito;
+}
+/*Eliminar del carrito*/
+contenedorCarrito.addEventListener("click", function (evento) {
+    const botonEliminar = evento.target.closest(".btn-eliminar");
+    if (!botonEliminar) return;
+    const idProducto = Number(botonEliminar.dataset.id);
+    const indice = carrito.findIndex(
+        producto => producto.id === idProducto
+    );
+    if (indice !== -1) {
+        carrito.splice(indice, 1);
+        renderizarCarrito();
+        guardarCarrito();
+        counterProducts()
+    }
+    console.log("Se hizo clic", evento.target);
+    console.log(idProducto);
+});
+/**Persistencia Localstorage */
+function guardarCarrito() {
+    localStorage.setItem("producto-carrito", JSON.stringify(carrito));
+}
+
+function cargarCarrito() {
+    const carritoGuardado = localStorage.getItem("producto-carrito");
+
+    if (carritoGuardado) {
+        carrito = JSON.parse(carritoGuardado);
+    }
+
+    renderizarCarrito();
+    
+}
+cargarCarrito();
+
+
+const btnCarrito = document.getElementById("btnCarrito");
+const panel = document.getElementById("carritoPanel");
+const cerrar = document.getElementById("cerrarCarrito");
+
+btnCarrito.addEventListener("click", (e)=>{
+    e.preventDefault();
+    panel.classList.toggle("active");
+});
+
+cerrar.addEventListener("click", ()=>{
+    panel.classList.remove("active")
+});
+
+
+const counterProducts = () => {
+  const counterProductos = document.getElementById("counterProductos");
+  counterProductos.textContent = carrito.length;
+}
+
+cargarCarrito();
+counterProducts();
