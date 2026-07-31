@@ -146,6 +146,9 @@ const productosFritosColombianos = [
 ];
 
 const contenedorProductos = document.getElementById("productos")
+let carrito = [];
+
+
 
 function renderizarProductos(array) {
   const htmlTarjetas = array.map(producto => {
@@ -161,20 +164,18 @@ function renderizarProductos(array) {
           </div>
           <p class="region"><strong>Origen:</strong> ${producto.region}</p>
           <p class="descripcion">${producto.descripcion}</p>
-          <button class= "boton-agregar-carrito" data-id="${producto.id}"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito </button>
+          <button class= "boton-agregar-carrito" data-id="${producto.id}"><i class="fa-solid fa-cart-shopping"> </i> Agregar al Carrito </button>
         </div>
       </div>  
     `;
   }).join('');
 
   contenedorProductos.innerHTML = htmlTarjetas;
+  
 }
 
 renderizarProductos(productosFritosColombianos)
 
-
-/** SECCIÓN CARRITO AGREGAR/ELIMINAR/VISUALIZAR---PERSISTENCIA EN LOCALSTORAGE */
-let carrito = [];
 contenedorProductos.addEventListener("click", function (evento) {
     const boton = evento.target.closest(".boton-agregar-carrito");
 
@@ -191,6 +192,7 @@ function agregarProducto(idProducto) {
     carrito.push(productoEncontrado);
     renderizarCarrito();
     guardarCarrito();
+    counterProducts()
 }
 /*Visualizar el carrito*/
 const contenedorCarrito = document.getElementById("carrito");
@@ -226,6 +228,7 @@ contenedorCarrito.addEventListener("click", function (evento) {
         carrito.splice(indice, 1);
         renderizarCarrito();
         guardarCarrito();
+        counterProducts()
     }
     console.log("Se hizo clic", evento.target);
     console.log(idProducto);
@@ -243,5 +246,29 @@ function cargarCarrito() {
     }
 
     renderizarCarrito();
+    
 }
 cargarCarrito();
+
+
+const btnCarrito = document.getElementById("btnCarrito");
+const panel = document.getElementById("carritoPanel");
+const cerrar = document.getElementById("cerrarCarrito");
+
+btnCarrito.addEventListener("click", (e)=>{
+    e.preventDefault();
+    panel.classList.toggle("active");
+});
+
+cerrar.addEventListener("click", ()=>{
+    panel.classList.remove("active")
+});
+
+
+const counterProducts = () => {
+  const counterProductos = document.getElementById("counterProductos");
+  counterProductos.textContent = carrito.length;
+}
+
+cargarCarrito();
+counterProducts();

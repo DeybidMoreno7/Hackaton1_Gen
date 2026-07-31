@@ -1,95 +1,3 @@
-.nuestra-cocina {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  padding: 4rem 2rem;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --primary-color: #b5541f;
-  --text-light: #fff;
-}
-
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.carousel-item img {
-  height: 800px;
-  object-fit: cover;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.65) 0%,
-      rgba(0, 0, 0, 0.25) 45%,
-      rgba(0, 0, 0, 0.35) 100%);
-  pointer-events: none;
-}
-
-.hero-content {
-  position: absolute;
-  bottom: 12%;
-  left: 9%;
-  max-width: 600px;
-  color: var(--text-light);
-  z-index: 10;
-}
-
-.hero-badge {
-  background: var(--primary-color);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.hero-title {
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 1rem 0;
-}
-
-.btn-hero-solid {
-  background: var(--primary-color);
-  color: var(--text-light);
-  padding: 0.75rem 1.6rem;
-  border-radius: 8px;
-}
-
-.btn-hero-solid:hover {
-  background-color: #db723a;
-  color: var(--text-light);
-}
-
-.btn-hero-glass {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--text-light);
-  padding: 0.75rem 1.6rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.btn-hero-glass:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: var(--text-light);
-  
-}
-
-
-
-.nuestra-cocina{
-    display:flex;
-    justify-content:center;
-    gap:2rem;
-    padding:4rem 2rem;
 * {
     margin: 0;
     padding: 0;
@@ -261,20 +169,7 @@ body {
 
 .btn-search {
     right: 0;
-    
 }
-
-.logo-navbar {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
-
-.navbar-brand {
-    font-size: 0rem;
-}
-
-/*Estilos de  Card - Walter*/
 
 /*Estilos de  Card - Walter*/
 /* Estilos para la sección de productos */
@@ -522,71 +417,56 @@ body {
 .boton-agregar-carrito:hover {
     background-color: #923000;
 }
-.carrito{
-    width: 60%;
-    margin: 0 auto 100px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    padding:30px
-}
-.titulo-carrito{
-    color:#1a233a;
-    margin-bottom:25px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:2rem;
-}
 
-#carrito{
+.carrito-panel{
+    position: fixed;
+    top: 70px;
+    right: -380px;
+    width: 350px;
+    height: calc(100vh - 70px);
+    background: white;
+    box-shadow: -5px 0 20px rgba(0,0,0,.15);
+    transition: .35s ease;
+    z-index: 9999;
     display:flex;
     flex-direction:column;
-    gap:15px;
 }
 
-.producto-carrito{
+.carrito-panel.active{
+    right:0;
+}
+
+.carrito-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px;
-    border:1px solid #ececec;
-    border-radius:10px;
-    transition:.2s;
+    padding:1rem;
+    border-bottom:1px solid #eee;
 }
 
-.producto-carrito:hover{
-    background:#fafafa;
-}
-
-.info-producto{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-.info-producto h3{
+.carrito-header h4{
     margin:0;
-    font-size:1.2rem;
-    color:#1a233a;
+    color:var(--primary-color);
 }
-.precio-carrito{
-    color:#b03a00;
-    font-weight:bold;
-}
-.btn-eliminar{
-    width:45px;
-    height:45px;
+
+.carrito-header button{
     border:none;
-    border-radius:8px;
-    background:#d62828;
-    color:white;
+    background:none;
+    font-size:1.5rem;
     cursor:pointer;
-    transition:.2s;
-    font-size:1rem;
 }
-.btn-eliminar:hover{
-    background:#b30000;
-    transform:scale(1.08);
+
+.carrito-body{
+    flex:1;
+    overflow-y:auto;
+    padding:1rem;
+}
+
+.btnCarrito {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
 }
 
 @media (max-width:768px){
@@ -603,5 +483,27 @@ body {
         justify-content:center;
     }
 
+    .navbar-collapse {
+        background: white !important;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        padding: 1rem; 
+    }
+
 }
+
+/* Tablet */
+@media (min-width: 768px) and (max-width:991px){
+    .navbar-collapse{
+        background: white;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        padding: 1rem;
+    }
 }
