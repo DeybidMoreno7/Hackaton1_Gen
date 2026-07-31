@@ -142,14 +142,6 @@ const productosFritosColombianos = [
     region: "Cauca (Popayán)",
     descripcion: "Empanada pequeña rellena de un guiso especial de papa colorada, maní molido y especias.",
     linkImagen: "https://lacosechaparrillada.com/wp-content/uploads/2025/09/Articulo2.webp"
-  },
-  {
-    id: 19,
-    nombre: "Torta de Pescado",
-    precio: "6.000 COP",
-    region: "Antioquia / Eje Cafetero",
-    descripcion: "La torta de pescado es una croqueta o pequeña masa plana hecha con pescado desmenuzado, huevo y harina o avena, que luego se fríe en aceite",
-    linkImagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcPnGp1ussK5ARLboIqPE9RigW0W7RVSSPKeQHzOH0Lq1W_ZCpngsO5a5&s=10"
   }
 ];
 
@@ -169,7 +161,7 @@ function renderizarProductos(array) {
           </div>
           <p class="region"><strong>Origen:</strong> ${producto.region}</p>
           <p class="descripcion">${producto.descripcion}</p>
-          <button class= "boton-agregar-carrito"> <span>Icono </span> Agregar al Carrito </button>
+          <button class= "boton-agregar-carrito"><i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito </button>
         </div>
       </div>  
     `;

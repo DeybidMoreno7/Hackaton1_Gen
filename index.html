@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
   <meta charset="UTF-8">
   <title>Friticos Colombia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -75,9 +75,56 @@
                     </button>
                 </form>
 
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="img.png" alt="Logo Friticos Colombia" width="60" height="60" class="me-2">
+                    <span>Friticos Colombia</span>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse p-3" id="navbarSupportedContent">
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="icon ion-md-star me-2"></i>
+                                Inicio
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="icon ion-md-restaurant me-2"></i>
+                                Menú
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="icon ion-md-people me-2"></i>
+                                Sobre nosotros
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <form class="d-flex position-relative" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                        <button class="btn btn-search position-absolute end-0 top-50 translate-middle-y" type="submit">
+                            <i class="icon ion-md-search"></i>
+                        </button>
+                    </form>
+
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    
 </div>
   </header>
 
@@ -174,8 +221,8 @@
                 perferendis amet voluptates libero eveniet, corrupti sit reprehenderit obcaecati facere hic incidunt
                 iusto nesciunt dolore? Id?</p>
         </article>
-  </section>
- 
+    </section>
+
 
     <footer class="bg-dark text-light pt-5 pb-3 mt-5">
         <div class="container">
