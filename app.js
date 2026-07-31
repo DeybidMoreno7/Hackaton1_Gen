@@ -148,8 +148,6 @@ const productosFritosColombianos = [
 const contenedorProductos = document.getElementById("productos")
 let carrito = [];
 
-
-
 function renderizarProductos(array) {
   const htmlTarjetas = array.map(producto => {
     return `
@@ -171,18 +169,16 @@ function renderizarProductos(array) {
   }).join('');
 
   contenedorProductos.innerHTML = htmlTarjetas;
-  
+
+  contenedorProductos.addEventListener("click", function (evento) {
+      const boton = evento.target.closest(".boton-agregar-carrito");
+
+      if (!boton) return;
+      const idProducto = boton.dataset.id;
+      agregarProducto(idProducto);
+  })
 }
 
-renderizarProductos(productosFritosColombianos)
-
-contenedorProductos.addEventListener("click", function (evento) {
-    const boton = evento.target.closest(".boton-agregar-carrito");
-
-    if (!boton) return;
-    const idProducto = boton.dataset.id;
-    agregarProducto(idProducto);
-})
 /*agregar al carrito*/
 function agregarProducto(idProducto) {
     const productoEncontrado = productosFritosColombianos.find(
@@ -194,13 +190,16 @@ function agregarProducto(idProducto) {
     guardarCarrito();
     counterProducts()
 }
+
 /*Visualizar el carrito*/
-const contenedorCarrito = document.getElementById("carrito");
 function renderizarCarrito() {
+    const contenedorCarrito = document.getElementById("carrito");
+
     if (carrito.length === 0) {
         contenedorCarrito.innerHTML = "<p>Tu carrito está vacío 🛒</p>";
         return;
     }
+
     const htmlCarrito = carrito.map(producto => {
         return `
             <div class="producto-carrito">
@@ -208,31 +207,34 @@ function renderizarCarrito() {
                     <h3>${producto.nombre}</h3>
                     <span>${producto.precio}</span>
                 </div>
-                <button class="btn-eliminar" data-id="${producto.id}">
+                <button class="btn btn-danger btn-eliminar" data-id="${producto.id}">
                     Eliminar
                 </button>
             </div>
         `;
     }).join("");
+
     contenedorCarrito.innerHTML = htmlCarrito;
+
+    /*Eliminar del carrito*/
+    contenedorCarrito.addEventListener("click", function (evento) {
+        const botonEliminar = evento.target.closest(".btn-eliminar");
+        if (!botonEliminar) return;
+        const idProducto = Number(botonEliminar.dataset.id);
+        const indice = carrito.findIndex(
+            producto => producto.id === idProducto
+        );
+        if (indice !== -1) {
+            carrito.splice(indice, 1);
+            renderizarCarrito();
+            guardarCarrito();
+            counterProducts()
+        }
+        console.log("Se hizo clic", evento.target);
+        console.log(idProducto);
+    });
 }
-/*Eliminar del carrito*/
-contenedorCarrito.addEventListener("click", function (evento) {
-    const botonEliminar = evento.target.closest(".btn-eliminar");
-    if (!botonEliminar) return;
-    const idProducto = Number(botonEliminar.dataset.id);
-    const indice = carrito.findIndex(
-        producto => producto.id === idProducto
-    );
-    if (indice !== -1) {
-        carrito.splice(indice, 1);
-        renderizarCarrito();
-        guardarCarrito();
-        counterProducts()
-    }
-    console.log("Se hizo clic", evento.target);
-    console.log(idProducto);
-});
+
 /**Persistencia Localstorage */
 function guardarCarrito() {
     localStorage.setItem("producto-carrito", JSON.stringify(carrito));
@@ -248,27 +250,28 @@ function cargarCarrito() {
     renderizarCarrito();
     
 }
-cargarCarrito();
 
+const renderCarrito = () => {
+  const btnCarrito = document.getElementById("btnCarrito");
+  const panel = document.getElementById("carritoPanel");
+  const cerrar = document.getElementById("cerrarCarrito");
 
-const btnCarrito = document.getElementById("btnCarrito");
-const panel = document.getElementById("carritoPanel");
-const cerrar = document.getElementById("cerrarCarrito");
+  btnCarrito.addEventListener("click", (e)=>{
+      e.preventDefault();
+      panel.classList.toggle("active");
+  });
 
-btnCarrito.addEventListener("click", (e)=>{
-    e.preventDefault();
-    panel.classList.toggle("active");
-});
-
-cerrar.addEventListener("click", ()=>{
-    panel.classList.remove("active")
-});
-
+  cerrar.addEventListener("click", ()=>{
+      panel.classList.remove("active")
+  });
+}
 
 const counterProducts = () => {
   const counterProductos = document.getElementById("counterProductos");
   counterProductos.textContent = carrito.length;
 }
 
+renderizarProductos(productosFritosColombianos)
 cargarCarrito();
 counterProducts();
+renderCarrito();

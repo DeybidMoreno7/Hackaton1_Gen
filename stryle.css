@@ -271,7 +271,6 @@ body {
     background-image: url("IMG/sneiderfondo.png");
 }
 
-
 .card .description{
     background: #fff;
     margin-top: -10px;
@@ -467,6 +466,23 @@ body {
     background-color: var(--primary-color);
     color: var(--text-light);
     border: none;
+}
+
+.producto-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-producto h3 {
+    font-size: 1.2rem;
+}
+
+.info-producto span {
+    color: #757575;
+    font-size: 0.9rem;
 }
 
 @media (max-width:768px){
