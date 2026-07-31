@@ -1,23 +1,22 @@
-          <button class="btn-agregar-carrito" data-id="${producto.id}">
+<button class="btn-agregar-carrito" data-id="${producto.id}">
                 gregar al carrito
         </button>
 /** SECCIÓN CARRITO AGREGAR/ELIMINAR/VISUALIZAR---PERSISTENCIA EN LOCALSTORAGE */
 let carrito = [];
 contenedorProductos.addEventListener("click", function (evento) {
-    console.log(evento.target);
-    if (evento.target.classList.contains("btn-agregar-carrito")) {
-        const idProducto = event.target.dataset.id;
-        agregarProducto(idProducto);
-    }
+    const boton = evento.target.closest(".boton-agregar-carrito");
+
+    if (!boton) return;
+    const idProducto = boton.dataset.id;
+    agregarProducto(idProducto);
 })
 /*agregar al carrito*/
 function agregarProducto(idProducto) {
-    console.log(idProducto);
     const productoEncontrado = productosFritosColombianos.find(
         producto => producto.id === Number(idProducto)
     );
+    if(!productoEncontrado) return;
     carrito.push(productoEncontrado);
-    console.log(carrito);
     renderizarCarrito();
     guardarCarrito();
 }
@@ -43,22 +42,27 @@ function renderizarCarrito() {
 }
 /*Eliminar del carrito*/
 contenedorCarrito.addEventListener("click", function (evento) {
-    if (evento.target.classList.contains("btn-eliminar")) {
-        const idProducto = evento.target.dataset.id;
-        carrito = carrito.filter(
-            producto => producto.id !== Number(idProducto)
-        );
+    const botonEliminar = evento.target.closest(".btn-eliminar");
+    if (!botonEliminar) return;
+    const idProducto = Number(botonEliminar.dataset.id);
+    const indice = carrito.findIndex(
+        producto => producto.id === idProducto
+    );
+    if (indice !== -1) {
+        carrito.splice(indice, 1);
         renderizarCarrito();
         guardarCarrito();
     }
+    console.log("Se hizo clic", evento.target);
+    console.log(idProducto);
 });
 /**Persistencia Localstorage */
 function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("producto-carrito", JSON.stringify(carrito));
 }
 
 function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem("carrito");
+    const carritoGuardado = localStorage.getItem("producto-carrito");
 
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
