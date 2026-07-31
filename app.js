@@ -1,11 +1,11 @@
-          <button class="btn-agregar" data-id="${producto.id}">
+          <button class="btn-agregar-carrito" data-id="${producto.id}">
                 gregar al carrito
         </button>
 /** SECCIÓN CARRITO AGREGAR/ELIMINAR/VISUALIZAR---PERSISTENCIA EN LOCALSTORAGE */
 let carrito = [];
 contenedorProductos.addEventListener("click", function (evento) {
     console.log(evento.target);
-    if (evento.target.classList.contains("btn-agregar")) {
+    if (evento.target.classList.contains("btn-agregar-carrito")) {
         const idProducto = event.target.dataset.id;
         agregarProducto(idProducto);
     }
