@@ -173,7 +173,6 @@ function renderizarProductos(array) {
 
 renderizarProductos(productosFritosColombianos)
 
-
 contenedorProductos.addEventListener("click", function (evento) {
     const boton = evento.target.closest(".boton-agregar-carrito");
 
@@ -190,6 +189,7 @@ function agregarProducto(idProducto) {
     carrito.push(productoEncontrado);
     renderizarCarrito();
     guardarCarrito();
+    counterProducts()
 }
 /*Visualizar el carrito*/
 const contenedorCarrito = document.getElementById("carrito");
@@ -225,6 +225,7 @@ contenedorCarrito.addEventListener("click", function (evento) {
         carrito.splice(indice, 1);
         renderizarCarrito();
         guardarCarrito();
+        counterProducts()
     }
     console.log("Se hizo clic", evento.target);
     console.log(idProducto);
@@ -246,4 +247,21 @@ function cargarCarrito() {
 cargarCarrito();
 
 
+const btnCarrito = document.getElementById("btnCarrito");
+const panel = document.getElementById("carritoPanel");
+const cerrar = document.getElementById("cerrarCarrito");
 
+btnCarrito.addEventListener("click", (e)=>{
+    e.preventDefault();
+    panel.classList.toggle("active");
+});
+
+cerrar.addEventListener("click", ()=>{
+    panel.classList.remove("active")
+});
+
+
+const counterProducts = () => {
+  const counterProductos = document.getElementById("counterProductos");
+  counterProductos.textContent = carrito.length;
+}

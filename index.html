@@ -21,13 +21,18 @@
         <!-- Navbar -->
         <div class="container w-100">
             <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
+                <div class="container-fluid d-flex justify-content-between align-items-center gx-5">
 
                     <a class="navbar-brand d-flex align-items-center" href="#">
                         <img src="img/img.png" alt="Logo Friticos Colombia" width="60" height="60" class="logo"
                             class="me-2">
                         <span>Friticos Colombia</span>
                     </a>
+
+                     <button class="btn-cart" id="btnCarrito">
+                        <i class="icon ion-md-cart"></i>
+                        <span class="cart-count" id="counterProductos">0</span>
+                     </button>
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -63,17 +68,34 @@
 
                         </ul>
 
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
                     </div>
+                </div>
             </nav>
         </div>
     </header>
+
+    <div id="carritoPanel" class="carrito-panel">
+        <div class="carrito-header">
+            <h4>Mi pedido</h4>
+
+            <button id="cerrarCarrito" class="btnCarrito">
+                <i class="icon ion-ios-close"></i>
+            </button>
+        </div>
+
+        <div class="carrito-body">
+            <section class="carrito">
+                <h2 class="titulo-carrito">
+                    <i class="fa-solid fa-cart-shopping"></i>Carrito de compras
+                </h2>
+
+                <div id="carrito">
+                    <p>Tu carrito está vacío.</p>
+                </div>
+            </section>
+    
+        </div>
+    </div>
 
     <section id="inicio">
         <div id="carouselExampleCaptions" class="carousel slide hero-carousel" data-bs-ride="carousel">
@@ -140,17 +162,6 @@
         </div>
         </div>
     </section>
-
-    <section class="carrito">
-        <h2 class="titulo-carrito">
-            <i class="fa-solid fa-cart-shopping"></i>Carrito de compras
-        </h2>
-
-        <div id="carrito">
-            <p>Tu carrito está vacío.</p>
-        </div>
-    </section>
-    
 
     <section id="about">
         <div class="container nuestra-cocina">
