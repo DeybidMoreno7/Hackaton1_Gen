@@ -1,95 +1,126 @@
-.nuestra-cocina {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-  padding: 4rem 2rem;
-}
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  --primary-color: #b5541f;
-  --text-light: #fff;
+    --primary-color: #b5541f;
+    --text-light: #fff;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body {
-  font-family: "Lato", sans-serif;
+    font-family: "Lato", sans-serif;
 }
 
+/* Estilos para el encabezado */
+.header {
+    background-color: #fff;
+    padding: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--primary-color);
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
+.navbar-brand,
+.navbar-brand span {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav-link.active{
+    color: var(--primary-color) !important;
+    font-weight:700;
+    text-decoration:underline;
+    text-underline-offset: 7px;
+}
+
+/* Estilos para el carrusel */
 .carousel-item img {
-  height: 800px;
-  object-fit: cover;
+    height: 800px;
+    object-fit: cover;
 }
 
 .hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top,
-      rgba(0, 0, 0, 0.65) 0%,
-      rgba(0, 0, 0, 0.25) 45%,
-      rgba(0, 0, 0, 0.35) 100%);
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0.25) 45%,
+            rgba(0, 0, 0, 0.35) 100%);
+    pointer-events: none;
 }
 
 .hero-content {
-  position: absolute;
-  bottom: 12%;
-  left: 9%;
-  max-width: 600px;
-  color: var(--text-light);
-  z-index: 10;
+    position: absolute;
+    bottom: 12%;
+    left: 9%;
+    max-width: 600px;
+    color: var(--text-light);
+    z-index: 10;
 }
 
 .hero-badge {
-  background: var(--primary-color);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
+    background: var(--primary-color);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
 }
 
 .hero-title {
-  font-size: 4rem;
-  font-weight: 700;
-  margin: 1rem 0;
+    font-size: 4rem;
+    font-weight: 700;
+    margin: 1rem 0;
 }
 
 .btn-hero-solid {
-  background: var(--primary-color);
-  color: var(--text-light);
-  padding: 0.75rem 1.6rem;
-  border-radius: 8px;
+    background: var(--primary-color);
+    color: var(--text-light);
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
 }
 
 .btn-hero-solid:hover {
-  background-color: #db723a;
-  color: var(--text-light);
+    background-color: #db723a;
+    color: var(--text-light);
 }
 
 .btn-hero-glass {
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--text-light);
-  padding: 0.75rem 1.6rem;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--text-light);
+    padding: 0.75rem 1.6rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .btn-hero-glass:hover {
-  background: rgba(255, 255, 255, 0.25);
-  color: var(--text-light);
-  
+    background: rgba(255, 255, 255, 0.25);
+    color: var(--text-light);
 }
 
 
-
-.nuestra-cocina{
-    display:flex;
-    justify-content:center;
-    gap:2rem;
-    padding:4rem 2rem;
+/* Estilos para la sección de nuestra cocina */
+.nuestra-cocina {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
 }
 .galeria{
     display:flex;
@@ -152,6 +183,8 @@ body {
 .texto-santi h4,
 .texto-santi h5 {
     text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
 }
 
 .texto-santi h4 {
@@ -169,27 +202,24 @@ body {
 
 .btn-search {
     right: 0;
-    
-}
-
-.logo-navbar {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
-
-.navbar-brand {
-    font-size: 0rem;
 }
 
 /*Estilos de  Card - Walter*/
+/* Estilos para la sección de productos */
+.productos-header h2 {
+    color: var(--primary-color);
+}
+
+.productos-header p {
+    color: #555;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
 .contenedor-productos {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    width: 60%;
-    margin: 100px auto;
 }
 
 .card-producto {
@@ -201,6 +231,7 @@ body {
     flex-direction: column;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    border: 1px solid #e0e0e0;
 }
 
 .card-producto:hover {
@@ -286,3 +317,18 @@ body {
     background-color: #923000;
 }
 
+@media (max-width:768px){
+    .nuestra-cocina{
+        flex-direction:column;
+    }
+
+    .texto-santi{
+        width:100%;
+    }
+
+    .galeria{
+        width:100%;
+        justify-content:center;
+    }
+
+}
