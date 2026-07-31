@@ -17,7 +17,68 @@
 
 <body>
   <header class="header">
-    <div class="container"></div>
+    <!-- Navbar -->
+<div class="w-100">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+
+<a class="navbar-brand d-flex align-items-center" href="#">
+    <img src="img.png"
+         alt="Logo Friticos Colombia"
+         width="60"
+         height="60"
+         class="me-2">
+    <span>Friticos Colombia</span>
+</a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse p-3" id="navbarSupportedContent">
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="icon ion-md-star me-2"></i>
+                            Inicio
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="icon ion-md-restaurant me-2"></i>
+                            Menú
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="icon ion-md-people me-2"></i>
+                            Sobre nosotros
+                        </a>
+                    </li>
+
+                </ul>
+
+                <form class="d-flex position-relative" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+                    <button class="btn btn-search position-absolute end-0 top-50 translate-middle-y" type="submit">
+                        <i class="icon ion-md-search"></i>
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+</div>
   </header>
 
   <div id="carouselExampleCaptions" class="carousel slide hero-carousel" data-bs-ride="carousel">
@@ -46,7 +107,6 @@
     <div class="hero-content">
       <span class="hero-badge">AUTÉNTICO SABOR COLOMBIANO</span>
       <h1 class="hero-title">El Verdadero Sabor de Colombia</h1>
-
       <p class="hero-subtitle">
         Descubre los mejores fritos, pollo frito, pollo asado y comidas tradicionales
         colombianas, preparados con recetas que conservan el auténtico sabor de nuestra tierra.
@@ -66,16 +126,121 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-
+</div>  
   <!--Contenedor Productos-->
   <div class="contenedor-productos" id="productos">
     <!--Cards de todos los friticos Colombianos-->
   </div>
+    <section class="nuestra-cocina">
+        <div class="galeria">
+            <article class="imagenes-santi">
+                <img src="https://i.pinimg.com/736x/71/d1/42/71d142de9b392d8b4b04a5cbd4f247d6.jpg"
+                    alt="palitos-de-queso">
+                <img src="https://i.pinimg.com/736x/c3/d1/14/c3d114d1421cf362e3f57702eff79770.jpg"
+                    alt="palitos-de-queso">
+            </article>
+            <article class="imagenes-santi">
+                <img src="https://i.pinimg.com/736x/71/d1/42/71d142de9b392d8b4b04a5cbd4f247d6.jpg"
+                    alt="palitos-de-queso">
+                <img src="https://i.pinimg.com/736x/c3/d1/14/c3d114d1421cf362e3f57702eff79770.jpg"
+                    alt="palitos-de-queso">
+            </article>
+        </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <script src="app.js"></script>
+
+        <article class="texto-santi">
+            <h4>Nuestra Cocina: Un Viaje a la Raíz </h4>
+            <p>
+                En Friticos de Colombia, creemos que la gran cocina comienza en la tierra. Nuestra filosofía
+                "Farm-to-table" no es solo una tendencia, es nuestro compromiso innegociable con la frescura y la
+                sostenibilidad.
+                <br>
+                Este principio guía cada uno de los pasos que damos, desde la selección cuidadosa de la semilla hasta el
+                momento en que nuestros productos llegan a su mesa.
+                <br>
+                "Cada crujiente y delicioso bocado de Friticos es el reflejo del esfuerzo de nuestra tierra y el respeto
+                por el medio ambiente."
+                A través de este modelo, no solo buscamos ofrecer snacks y alimentos de la más alta calidad, sino
+                también construir un futuro donde la gastronomía y la conservación del planeta vayan de la mano,
+                celebrando lo mejor de la agricultura colombiana con orgullo y transparencia.
+            </p>
+            <h5>Ingredientes Orgánicos</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reiciendis vel laborum ullam provident
+                perferendis amet voluptates libero eveniet, corrupti sit reprehenderit obcaecati facere hic incidunt
+                iusto nesciunt dolore? Id?</p>
+            <br>
+            <h5>Legados del Chef</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reiciendis vel laborum ullam provident
+                perferendis amet voluptates libero eveniet, corrupti sit reprehenderit obcaecati facere hic incidunt
+                iusto nesciunt dolore? Id?</p>
+        </article>
+  </section>
+ 
+
+    <footer class="bg-dark text-light pt-5 pb-3 mt-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12 col-lg-4">
+                    <h2 class="h5 fw-bold text-warning mb-3">
+                        Friticos de Colombia
+                        <i class="bi bi-house-up-fill"></i>
+                    </h2>
+                    <p class="text-secondary small">
+                        Tu mejor opción para saborear las delicias colombianas.
+                    </p>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <h3 class="h6 fw-bold text-uppercase mb-3">
+                        Navegación <i class="bi bi-asterisk"></i>
+                    </h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a href="./index.html" class="text-secondary text-decoration-none hover-warning">Inicio</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="./quienes_somos.html" class="text-secondary text-decoration-none">Quienes Somos</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="./contacto.html" class="text-secondary text-decoration-none">Contacto
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <h4 class="h6 fw-bold text-uppercase mb-3">
+                        Contacto
+                        <i class="bi bi-telephone-inbound-fill"></i>
+                    </h4>
+                    <address class="text-secondary small mb-0">
+                        <p class="mb-2">
+                            <strong>Email:</strong>
+                            <a href="mailto:friticos.colombia@gmail.com"
+                                class="text-warning text-decoration-none">friticos.colombia@gmail.com</a>
+                        </p>
+                        <p class="mb-2">
+                            <strong>Teléfono:</strong>
+                            <a href="tel:+573231234567" class="text-warning text-decoration-none">+57 (322) 822 8498</a>
+                        </p>
+                        <p class="mb-0">
+                            <strong>Ubicación:</strong> Calle 68 B Sur # 63
+                            - 55
+                        </p>
+                    </address>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-25" />
+            <div class="d-flex flex-column flex-sm-row align-items-center small text-secondary">
+                <p class="mb-2 mb-sm-0">
+                    &copy; 2026 Friticos Colombia. Todos los derechos
+                    reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
