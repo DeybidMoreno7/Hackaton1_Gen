@@ -171,84 +171,149 @@ function renderizarProductos(array) {
   contenedorProductos.innerHTML = htmlTarjetas;
 
   contenedorProductos.addEventListener("click", function (evento) {
-      const boton = evento.target.closest(".boton-agregar-carrito");
+    const boton = evento.target.closest(".boton-agregar-carrito");
 
-      if (!boton) return;
-      const idProducto = boton.dataset.id;
-      agregarProducto(idProducto);
+    if (!boton) return;
+    const idProducto = boton.dataset.id;
+    agregarProducto(idProducto);
   })
 }
 
 /*agregar al carrito*/
 function agregarProducto(idProducto) {
-    const productoEncontrado = productosFritosColombianos.find(
-        producto => producto.id === Number(idProducto)
-    );
-    if(!productoEncontrado) return;
-    carrito.push(productoEncontrado);
-    renderizarCarrito();
-    guardarCarrito();
-    counterProducts()
+  const productoEncontrado = productosFritosColombianos.find(
+    producto => producto.id === Number(idProducto)
+  );
+  if (!productoEncontrado) return;
+  const itemExistente = carrito.find(item => item.id === productoEncontrado.id);
+
+  if (itemExistente) {
+    itemExistente.cantidad += 1;
+  } else {
+    carrito.push({ ...productoEncontrado, cantidad: 1 });
+  }
+  renderizarCarrito();
+  guardarCarrito();
+  counterProducts()
 }
 
 /*Visualizar el carrito*/
 function renderizarCarrito() {
-    const contenedorCarrito = document.getElementById("carrito");
+  const contenedorCarrito = document.getElementById("carrito");
 
-    if (carrito.length === 0) {
-        contenedorCarrito.innerHTML = "<p>Tu carrito está vacío 🛒</p>";
-        return;
-    }
+  if (carrito.length === 0) {
+    contenedorCarrito.innerHTML = "<p>Tu carrito está vacío 🛒</p>";
+    document.getElementById("carritoFooter").innerHTML = "";
+    return;
+  }
 
-    const htmlCarrito = carrito.map(producto => {
-        return `
+  const htmlCarrito = carrito.map(producto => {
+    const cantidad = producto.cantidad || 1;
+    const precio = obtenerPrecio(producto.precio);
+    return `
             <div class="producto-carrito">
+          <img src="${producto.linkImagen}" alt="${producto.nombre}">
                 <div class="info-producto">
                     <h3>${producto.nombre}</h3>
-                    <span>${producto.precio}</span>
+            <span>${producto.precio} cada uno</span>
+            <strong>${formatearPrecio(precio * cantidad)}</strong>
+            <div class="controles-cantidad">
+              <button class="btn-cantidad" data-id="${producto.id}" data-accion="restar" aria-label="Quitar una unidad">−</button>
+              <span>${cantidad}</span>
+              <button class="btn-cantidad" data-id="${producto.id}" data-accion="sumar" aria-label="Agregar una unidad">+</button>
+            </div>
                 </div>
-                <button class="btn btn-danger btn-eliminar" data-id="${producto.id}">
-                     <i class="icon ion-md-close"></i>
+          <button class="btn-eliminar" data-id="${producto.id}" aria-label="Eliminar ${producto.nombre}">
+             <i class="icon ion-md-trash"></i>
                 </button>
             </div>
         `;
-    }).join("");
+  }).join("");
 
-    contenedorCarrito.innerHTML = htmlCarrito;
+  contenedorCarrito.innerHTML = htmlCarrito;
+  const total = carrito.reduce((suma, producto) => suma + obtenerPrecio(producto.precio) * (producto.cantidad || 1), 0);
+  document.getElementById("carritoFooter").innerHTML = `
+      <div class="total-carrito"><span>Total</span><strong>${formatearPrecio(total)}</strong></div>
+      <button class="btn-finalizar" type="button" id="finalizarPedido">Finalizar pedido</button>
+    `;
 
-    /*Eliminar del carrito*/
-    contenedorCarrito.addEventListener("click", function (evento) {
-        const botonEliminar = evento.target.closest(".btn-eliminar");
-        if (!botonEliminar) return;
-        const idProducto = Number(botonEliminar.dataset.id);
-        const indice = carrito.findIndex(
-            producto => producto.id === idProducto
-        );
-        if (indice !== -1) {
-            carrito.splice(indice, 1);
-            renderizarCarrito();
-            guardarCarrito();
-            counterProducts()
-        }
-        console.log("Se hizo clic", evento.target);
-        console.log(idProducto);
-    });
+  document.getElementById("finalizarPedido").onclick = finalizarPedido;
+
+  contenedorCarrito.onclick = function (evento) {
+    const botonCantidad = evento.target.closest(".btn-cantidad");
+    const botonEliminar = evento.target.closest(".btn-eliminar");
+    const boton = botonCantidad || botonEliminar;
+    if (!boton) return;
+
+    const idProducto = Number(boton.dataset.id);
+    const item = carrito.find(producto => producto.id === idProducto);
+    if (!item) return;
+
+    if (botonCantidad) {
+      item.cantidad += boton.dataset.accion === "sumar" ? 1 : -1;
+      if (item.cantidad <= 0) {
+        carrito = carrito.filter(producto => producto.id !== idProducto);
+      }
+    } else {
+      carrito = carrito.filter(producto => producto.id !== idProducto);
+    }
+
+    renderizarCarrito();
+    guardarCarrito();
+    counterProducts();
+  };
+}
+
+function finalizarPedido() {
+  carrito = [];
+  guardarCarrito();
+  counterProducts();
+
+  document.getElementById("carrito").innerHTML = `
+    <div class="pedido-confirmado">
+      <i class="icon ion-md-checkmark-circle"></i>
+      <h3>¡Pedido confirmado!</h3>
+      <p>Tu pedido está en camino. Pronto podrás disfrutar el sabor de Colombia.</p>
+    </div>
+  `;
+  document.getElementById("carritoFooter").innerHTML = `
+    <button class="btn-finalizar" type="button" id="seguirComprando">Seguir comprando</button>
+  `;
+  document.getElementById("seguirComprando").onclick = () => {
+    document.getElementById("carritoPanel").classList.remove("active");
+  };
+}
+
+function obtenerPrecio(precio) {
+  return Number(precio.replace(/\D/g, ""));
+}
+
+function formatearPrecio(precio) {
+  return `${precio.toLocaleString("es-CO")} COP`;
 }
 
 /**Persistencia Localstorage */
 function guardarCarrito() {
-    localStorage.setItem("producto-carrito", JSON.stringify(carrito));
+  localStorage.setItem("producto-carrito", JSON.stringify(carrito));
 }
 
 function cargarCarrito() {
-    const carritoGuardado = localStorage.getItem("producto-carrito");
+  const carritoGuardado = localStorage.getItem("producto-carrito");
 
-    if (carritoGuardado) {
-        carrito = JSON.parse(carritoGuardado);
-    }
+  if (carritoGuardado) {
+    carrito = JSON.parse(carritoGuardado).reduce((items, producto) => {
+      const itemExistente = items.find(item => item.id === producto.id);
+      if (itemExistente) {
+        itemExistente.cantidad += producto.cantidad || 1;
+      } else {
+        items.push({ ...producto, cantidad: producto.cantidad || 1 });
+      }
+      return items;
+    }, []);
+  }
 
-    renderizarCarrito();
-    
+  renderizarCarrito();
+
 }
 
 const renderCarrito = () => {
@@ -256,19 +321,19 @@ const renderCarrito = () => {
   const panel = document.getElementById("carritoPanel");
   const cerrar = document.getElementById("cerrarCarrito");
 
-  btnCarrito.addEventListener("click", (e)=>{
-      e.preventDefault();
-      panel.classList.toggle("active");
+  btnCarrito.addEventListener("click", (e) => {
+    e.preventDefault();
+    panel.classList.toggle("active");
   });
 
-  cerrar.addEventListener("click", ()=>{
-      panel.classList.remove("active")
+  cerrar.addEventListener("click", () => {
+    panel.classList.remove("active")
   });
 }
 
 const counterProducts = () => {
   const counterProductos = document.getElementById("counterProductos");
-  counterProductos.textContent = carrito.length;
+  counterProductos.textContent = carrito.reduce((total, producto) => total + (producto.cantidad || 1), 0);
 }
 
 renderizarProductos(productosFritosColombianos)
